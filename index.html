@@ -131,6 +131,7 @@
       const a1 = document.getElementById('audio1');
       const a2 = document.getElementById('audio2');
       const texto = document.getElementById("mensagem");
+      const botao = document.querySelector("button");
 
       if (fase === 0) {
         a1.pause();
@@ -151,15 +152,16 @@
         `;
         fase = 2;
 
-        // Iniciar fogos e mostrar mensagem final após 5 segundos
+        // Iniciar fogos e mostrar mensagem final
         startFireworks();
         setTimeout(() => {
           texto.innerHTML += `<br><br><strong style="font-size: 2rem; color: #ff69b4;">Te amo meu amor! 😍❤️</strong>`;
+          botao.style.display = "none";
         }, 5000);
       }
     }
 
-    // 🎆 Fogos de artifício simples com canvas
+    // 🎆 Fogos de artifício
     const canvas = document.getElementById('fireworks');
     const ctx = canvas.getContext('2d');
     let W = window.innerWidth;
