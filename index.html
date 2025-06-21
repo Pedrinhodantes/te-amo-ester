@@ -15,7 +15,10 @@
     }
 
     h1 {
-      margin: 50px auto 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
       font-size: 2.5rem;
       color: #fff;
@@ -23,6 +26,7 @@
       animation: pulse 2s infinite;
       max-width: 90vw;
       line-height: 1.6em;
+      z-index: 1;
     }
 
     .emoji {
@@ -46,6 +50,8 @@
       box-shadow: 0 0 10px #fff;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      z-index: 2;
+      position: relative;
     }
 
     button:hover {
@@ -53,26 +59,14 @@
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(1.2);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
     }
 
     @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
     }
 
     footer {
@@ -93,6 +87,30 @@
       pointer-events: none;
       z-index: 0;
     }
+
+    .shooting-star {
+      position: fixed;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, white, transparent);
+      opacity: 0.8;
+      transform: rotate(-45deg);
+      animation: shoot 1s linear forwards;
+      z-index: 3;
+    }
+
+    @keyframes shoot {
+      0% {
+        left: -150px;
+        top: 0;
+        opacity: 1;
+      }
+      100% {
+        left: 100vw;
+        top: 100vh;
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -104,16 +122,15 @@
   <audio id="audio1" autoplay loop>
     <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
-
   <audio id="audio2" loop>
     <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Canvas para fogos -->
+  <!-- Fogos -->
   <canvas id="fireworks"></canvas>
 
   <script>
-    const emojis = ['💖', '🌸', '🌷', '💕', '✨', '💘', '🫶', '🥰', '😻', '🌟', '🩷', '❤️', '💫', '🎀', '😍', '💞', '🌹'];
+    const emojis = ['💖','🌸','🌷','💕','✨','💘','🫶','🥰','😻','🌟','🩷','❤️','💫','🎀','😍','💞','🌹'];
     for (let i = 0; i < 100; i++) {
       const emoji = document.createElement('div');
       emoji.className = 'emoji';
@@ -138,9 +155,18 @@
         a1.currentTime = 0;
         a2.play();
         texto.innerHTML = "🌟 Você é meu presente todos os dias, Ester! 💌";
+        texto.style.position = "absolute";
+        texto.style.top = "50%";
+        texto.style.left = "50%";
+        texto.style.transform = "translate(-50%, -50%)";
         fase = 1;
       } else if (fase === 1) {
         document.body.style.background = "#0d0d0d";
+        texto.style.position = "static";
+        texto.style.transform = "none";
+        texto.style.margin = "50px auto 20px";
+        texto.style.textAlign = "center";
+
         texto.innerHTML = `
           Para mim, a melhor coisa que aconteceu foi te conhecer!<br><br>
           Você é a garota mais importante para mim! Te amo muito, minha Haruzinha &lt;3<br><br>
@@ -152,7 +178,6 @@
         `;
         fase = 2;
 
-        // Iniciar fogos e mostrar mensagem final
         startFireworks();
         setTimeout(() => {
           texto.innerHTML += `<br><br><strong style="font-size: 2rem; color: #ff69b4;">Te amo meu amor! 😍❤️</strong>`;
@@ -161,7 +186,7 @@
       }
     }
 
-    // 🎆 Fogos de artifício
+    // 🎆 Fogos
     const canvas = document.getElementById('fireworks');
     const ctx = canvas.getContext('2d');
     let W = window.innerWidth;
@@ -217,6 +242,15 @@
       setInterval(createFirework, 800);
       setInterval(drawFireworks, 30);
     }
+
+    // 🌠 Estrela cadente a cada 5 segundos
+    setInterval(() => {
+      const estrela = document.createElement('div');
+      estrela.className = "shooting-star";
+      estrela.style.top = Math.random() * window.innerHeight * 0.5 + "px";
+      document.body.appendChild(estrela);
+      setTimeout(() => estrela.remove(), 1200);
+    }, 5000);
 
     window.addEventListener("resize", () => {
       W = window.innerWidth;
