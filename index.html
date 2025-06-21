@@ -14,7 +14,7 @@
 
     h1 {
       position: absolute;
-      top: 50%;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 3.5rem;
@@ -29,6 +29,26 @@
       font-size: 1.5rem;
       user-select: none;
       animation: float 6s linear infinite;
+    }
+
+    button {
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff69b4;
+      color: white;
+      box-shadow: 0 0 10px #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff1493;
     }
 
     @keyframes float {
@@ -56,12 +76,19 @@
   </style>
 </head>
 <body>
-  <h1>Te amo Ester 💖</h1>
+  <h1>Te amo Ester </h1>
 
-  <!-- Música de fundo -->
-  <audio autoplay loop>
+  <!-- Botão Surpresa -->
+  <button onclick="mudarMusica()">Clique aqui para uma surpresa 🎁</button>
+
+  <!-- Música de fundo padrão -->
+  <audio id="audio1" autoplay loop>
     <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
+  </audio>
+
+  <!-- Segunda música (surpresa) -->
+  <audio id="audio2" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -75,6 +102,15 @@
       emoji.style.fontSize = (Math.random() * 2 + 1.2) + 'rem';
       emoji.style.animationDuration = (Math.random() * 4 + 4) + 's';
       document.body.appendChild(emoji);
+    }
+
+    function mudarMusica() {
+      const a1 = document.getElementById('audio1');
+      const a2 = document.getElementById('audio2');
+      a1.pause();
+      a1.currentTime = 0;
+      a2.play();
+      alert("🌟 Essa é especial só pra você, Ester 💕");
     }
   </script>
 </body>
