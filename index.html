@@ -21,6 +21,8 @@
       color: #fff;
       text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
       animation: pulse 2s infinite;
+      text-align: center;
+      max-width: 90vw;
     }
 
     .emoji {
@@ -73,24 +75,36 @@
         transform: translate(-50%, -50%) scale(1.05);
       }
     }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 5px;
+    }
   </style>
 </head>
 <body>
-  <h1>Te amo Ester </h1>
+  <h1 id="mensagem">Te amo Ester 💖</h1>
 
   <!-- Botão Surpresa -->
   <button onclick="mudarMusica()">Clique aqui para uma surpresa 🎁</button>
 
-  <!-- Música de fundo padrão -->
+  <!-- Música de fundo -->
   <audio id="audio1" autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Segunda música (surpresa) -->
+  <!-- Segunda música (a mesma, ou você pode trocar depois) -->
   <audio id="audio2" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Emojis -->
   <script>
     const emojis = ['💖', '🌸', '🌷', '💕', '✨', '💘', '🫶', '🥰', '😻', '🌟'];
     for (let i = 0; i < 60; i++) {
@@ -110,8 +124,17 @@
       a1.pause();
       a1.currentTime = 0;
       a2.play();
-      alert("🌟 Essa é especial só pra você, Ester 💕");
+
+      const texto = document.getElementById("mensagem");
+      texto.innerHTML = "🌟 Você é meu presente todos os dias, Ester! 💌";
+
+      alert("❤️ Surpresa ativada com amor!");
     }
   </script>
+
+  <!-- Crédito musical -->
+  <footer>
+    🎵 Música: “A Thousand Years” (versão instrumental) – gratuito via FiftySounds. Obrigado! 🎶
+  </footer>
 </body>
 </html>
