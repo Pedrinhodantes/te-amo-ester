@@ -39,8 +39,10 @@
     }
 
     button {
-      display: block;
-      margin: 20px auto;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
       padding: 15px 30px;
       font-size: 1.2rem;
       border: none;
@@ -50,8 +52,7 @@
       box-shadow: 0 0 10px #fff;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      z-index: 2;
-      position: relative;
+      z-index: 10;
     }
 
     button:hover {
@@ -78,6 +79,7 @@
       color: #fff;
       font-size: 0.8rem;
       padding: 5px;
+      z-index: 5;
     }
 
     canvas {
@@ -186,7 +188,7 @@
       }
     }
 
-    // 🎆 Fogos
+    // Fogos
     const canvas = document.getElementById('fireworks');
     const ctx = canvas.getContext('2d');
     let W = window.innerWidth;
@@ -243,7 +245,7 @@
       setInterval(drawFireworks, 30);
     }
 
-    // 🌠 Estrela cadente a cada 5 segundos
+    // Estrela cadente a cada 5 segundos
     setInterval(() => {
       const estrela = document.createElement('div');
       estrela.className = "shooting-star";
