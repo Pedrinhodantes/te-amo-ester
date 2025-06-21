@@ -9,22 +9,20 @@
       margin: 0;
       background: linear-gradient(135deg, #ffdde1, #ee9ca7);
       font-family: 'Comic Sans MS', cursive;
-      overflow: hidden;
+      overflow-x: hidden;
       transition: background 1s;
+      padding-bottom: 80px;
     }
 
     h1 {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      margin: 50px auto 20px;
+      text-align: center;
       font-size: 2.5rem;
       color: #fff;
       text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
       animation: pulse 2s infinite;
-      text-align: center;
       max-width: 90vw;
-      line-height: 1.5em;
+      line-height: 1.6em;
     }
 
     .emoji {
@@ -36,10 +34,8 @@
     }
 
     button {
-      position: absolute;
-      top: 70%;
-      left: 50%;
-      transform: translateX(-50%);
+      display: block;
+      margin: 20px auto;
       padding: 15px 30px;
       font-size: 1.2rem;
       border: none;
@@ -71,10 +67,10 @@
 
     @keyframes pulse {
       0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
+        transform: scale(1);
       }
       50% {
-        transform: translate(-50%, -50%) scale(1.05);
+        transform: scale(1.05);
       }
     }
 
@@ -100,14 +96,12 @@
     <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Segunda música -->
   <audio id="audio2" loop>
     <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Emojis -->
   <script>
-    const emojis = ['💖', '🌸', '🌷', '💕', '✨', '💘', '🫶', '🥰', '😻', '🌟', '🩷', '❤️', '💫', '🎀', '😍'];
+    const emojis = ['💖', '🌸', '🌷', '💕', '✨', '💘', '🫶', '🥰', '😻', '🌟', '🩷', '❤️', '💫', '🎀', '😍', '💞', '🌹'];
     for (let i = 0; i < 100; i++) {
       const emoji = document.createElement('div');
       emoji.className = 'emoji';
@@ -133,7 +127,7 @@
         texto.innerHTML = "🌟 Você é meu presente todos os dias, Ester! 💌";
         fase = 1;
       } else if (fase === 1) {
-        document.body.style.background = "#0d0d0d"; // fundo escuro
+        document.body.style.background = "#0d0d0d";
         texto.innerHTML = `
           Para mim, a melhor coisa que aconteceu foi te conhecer!<br><br>
           Você é a garota mais importante para mim! Te amo muito, minha Haruzinha &lt;3<br><br>
