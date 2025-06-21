@@ -10,6 +10,7 @@
       background: linear-gradient(135deg, #ffdde1, #ee9ca7);
       font-family: 'Comic Sans MS', cursive;
       overflow: hidden;
+      transition: background 1s;
     }
 
     h1 {
@@ -17,12 +18,13 @@
       top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 3.5rem;
+      font-size: 2.5rem;
       color: #fff;
       text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
       animation: pulse 2s infinite;
       text-align: center;
       max-width: 90vw;
+      line-height: 1.5em;
     }
 
     .emoji {
@@ -30,7 +32,7 @@
       color: #fff;
       font-size: 1.5rem;
       user-select: none;
-      animation: float 6s linear infinite;
+      animation: float 8s linear infinite;
     }
 
     button {
@@ -91,7 +93,6 @@
 <body>
   <h1 id="mensagem">Te amo Ester 💖</h1>
 
-  <!-- Botão Surpresa -->
   <button onclick="mudarMusica()">Clique aqui para uma surpresa 🎁</button>
 
   <!-- Música de fundo -->
@@ -99,42 +100,56 @@
     <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Segunda música (a mesma, ou você pode trocar depois) -->
+  <!-- Segunda música -->
   <audio id="audio2" loop>
     <source src="athousandyears_instrumental.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Emojis -->
   <script>
-    const emojis = ['💖', '🌸', '🌷', '💕', '✨', '💘', '🫶', '🥰', '😻', '🌟'];
-    for (let i = 0; i < 60; i++) {
+    const emojis = ['💖', '🌸', '🌷', '💕', '✨', '💘', '🫶', '🥰', '😻', '🌟', '🩷', '❤️', '💫', '🎀', '😍'];
+    for (let i = 0; i < 100; i++) {
       const emoji = document.createElement('div');
       emoji.className = 'emoji';
       emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       emoji.style.left = Math.random() * 100 + 'vw';
       emoji.style.top = Math.random() * 100 + 'vh';
       emoji.style.fontSize = (Math.random() * 2 + 1.2) + 'rem';
-      emoji.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      emoji.style.animationDuration = (Math.random() * 4 + 6) + 's';
       document.body.appendChild(emoji);
     }
+
+    let fase = 0;
 
     function mudarMusica() {
       const a1 = document.getElementById('audio1');
       const a2 = document.getElementById('audio2');
-      a1.pause();
-      a1.currentTime = 0;
-      a2.play();
-
       const texto = document.getElementById("mensagem");
-      texto.innerHTML = "🌟 Te amo Ester! ❤️";
 
-      alert("❤️ Para mim, a melhor coisa que aconteceu foi te conhecer! você é a garota mais importante para mim! te amo muito minha haruzinha<3 amo o seu jeito doce de falar. Cada momento conversando com você  é especial, mesmo nas coisas simples, até no silêncio. Você me inspira a ser alguém melhor todos os dias. Meu coração é todo seu, minha Haruzinha. 💖 Que sorte a minha poder chamar a garota mais linda desse mundo de meu 😍 Te amo mais do que palavras podem dizer, e quero viver uma história linda ao seu lado!");
+      if (fase === 0) {
+        a1.pause();
+        a1.currentTime = 0;
+        a2.play();
+        texto.innerHTML = "🌟 Você é meu presente todos os dias, Ester! 💌";
+        fase = 1;
+      } else if (fase === 1) {
+        document.body.style.background = "#0d0d0d"; // fundo escuro
+        texto.innerHTML = `
+          Para mim, a melhor coisa que aconteceu foi te conhecer!<br><br>
+          Você é a garota mais importante para mim! Te amo muito, minha Haruzinha &lt;3<br><br>
+          Amo o seu jeito doce de falar. Cada momento conversando com você é especial, mesmo nas coisas simples, até no silêncio.<br><br>
+          Você me inspira a ser alguém melhor todos os dias.<br><br>
+          Meu coração é todo seu, minha Haruzinha. 💖<br><br>
+          Que sorte a minha poder chamar a garota mais linda desse mundo de <strong>meu</strong> 😍<br><br>
+          Te amo mais do que palavras podem dizer, e quero viver uma história linda ao seu lado. 💞
+        `;
+        fase = 2;
+      }
     }
   </script>
 
-  <!-- Crédito musical -->
   <footer>
-    🎵 Música: “A Thousand Years” (versão instrumental) – gratuito via FiftySounds. Obrigado! 🎶
+    🎵 Música: “A Thousand Years” (instrumental) – gratuito via FiftySounds. Obrigado! 🎶
   </footer>
 </body>
 </html>
